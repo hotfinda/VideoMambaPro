@@ -27,26 +27,35 @@ We read and process the same way as [VideoMAE](https://github.com/MCG-NJU/VideoM
 
 
 ## Pre-train Dataset
-The pretrain dataset loads the data list file, and then process each line in the list. The pre-training data list file is in the following format:
+We pretrain the model on ImageNet-1K dataset, where the model loads a data list file with the following format:
+> frame_folder_path total_frames label
 
-for video data line:
-> video_path 0 -1
+## Fine-tune Dataset
+There are two implementations of our finetune dataset `VideoClsDataset` and `RawFrameClsDataset`, supporting video data and rawframes data, respectively. Where SSV2 uses `RawFrameClsDataset` by default and the rest of the datasets use `VideoClsDataset`.
 
-for rawframes data line:
-> frame_folder_path start_index total_frames
+`VideoClsDataset` loads a data list file with the following format:
+> video_path label
 
-For example, the UnlabeledHybrid data list file containing data from multiple sources, in part:
+while `RawFrameClsDataset` loads a data list file with the following format:
+> frame_folder_path total_frames label
+
+For example, video data list and rawframes data list are shown below:
 ```
 # The path prefix 'your_path' can be specified by `--data_root ${PATH_PREFIX}` in scripts when training or inferencing.
 
-your_path/k400/---QUuC4vJs.mp4 0 -1
-your_path/k400/--VnA3ztuZg.mp4 0 -1
+# k400 video data validation list
+your_path/k400/jf7RDuUTrsQ.mp4 325
+your_path/k400/JTlatknwOrY.mp4 233
+your_path/k400/NUG7kwJ-614.mp4 103
+your_path/k400/y9r115bgfNk.mp4 320
+your_path/k400/ZnIDviwA8CE.mp4 244
 ...
-your_path/AVA/frames/clip/zlVkeKC6Ha8 9601 300
-your_path/AVA/frames/clip/zlVkeKC6Ha8 9901 300
-...
-your_path/SSv2/frames/182040 1 58
-your_path/SSv2/frames/197728 1 29
+
+# ssv2 rawframes data validation list
+your_path/SomethingV2/frames/74225 62 140
+your_path/SomethingV2/frames/116154 51 127
+your_path/SomethingV2/frames/198186 47 173
+your_path/SomethingV2/frames/137878 29 99
+your_path/SomethingV2/frames/151151 31 166
 ...
 ```
-where the AVA and Something-Something data are rawframes and the rest are videos.
