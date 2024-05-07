@@ -1,3 +1,3 @@
 # VideoMambaPro
 Official Implementation of VideoMambaPro
-![flowchart](misc/flowchart.png)
+![flowchart](fig/fig1.png)
