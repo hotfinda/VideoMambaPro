@@ -1,2 +1,3 @@
 # VideoMambaPro
-Improving Mamaba performance on Video Understanding task
+Official Implementation of VideoMambaPro
+![flowchart](misc/flowchart.png)
