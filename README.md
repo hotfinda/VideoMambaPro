@@ -61,5 +61,13 @@ your_path/SomethingV2/frames/137878 29 99
 your_path/SomethingV2/frames/151151 31 166
 ...
 ```
-# Code Reproduce 
-Our project is based on VideoMamba, we mainly change the pipeline of Mamba in mamba/mamba_ssm/modules/mamba_simple.py by applying the diagonal mask during the backward SSM and applying residual connection on the bidirection SSM.
+# Limitation1&2 solution
+Our project is based on VideoMamba for fair comparison. To solve limitation 1&2 in our paper, we mainly change the pipeline of Mamba by applying the diagonal mask during the backward SSM and applying residual connection on the bidirection SSM.
+The  residual connection of Ab is realized through assign new matrix A in mamba/mamba_ssm/ops/selective_scan_interface.py
+```
+A = deltaA[:, :, i] + deltaA[:, :, x.index]
+```
+The mask assignment is realized through setting elements of A_b in mamba/mamba_ssm/modules/mamba_simple.py
+```
+self.A_b_log = mask_diagnomal (A_b_log)
+```
