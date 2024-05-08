@@ -61,3 +61,5 @@ your_path/SomethingV2/frames/137878 29 99
 your_path/SomethingV2/frames/151151 31 166
 ...
 ```
+# Code Reproduce 
+Our project is based on VideoMamba, we mainly change the pipeline of Mamba in mamba/mamba_ssm/modules/mamba_simple.py by applying the diagonal mask during the backward SSM and applying residual connection on the bidirection SSM.
