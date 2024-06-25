@@ -2,8 +2,7 @@
 Official Implementation of VideoMambaPro
 ![flowchart](fig/fig1.png)
 
-we investigate similarities and differences of self-attention and Mamba from the perspective of the latter, and reveal the limitations of Mamba on video understanding task. We propose VideoMambaPro that uses VideoMamba as a backbone, but significantly enhancing performance in the video understanding task, narrowing the gap with transformers. 
-
+we investigate similarities and differences of self-attention and Mamba from the perspective of the latter, and reveal the limitations of Mamba on video understanding task. We propose VideoMambaPro that uses [VideoMamba](https://github.com/OpenGVLab/VideoMamba) as a backbone, but significantly enhancing performance in the video understanding task, narrowing the gap with transformers. 
 # Installation
 
 The required packages are in the file `requirements.txt`, and you can run the following command to install the environment
