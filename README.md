@@ -8,20 +8,19 @@ we investigate similarities and differences of self-attention and Mamba from the
 The required packages are in the file `requirements.txt`, and you can run the following command to install the environment
 
 ```
-conda create --name videomae python=3.8 -y
+conda create -n videomambapro python=3.10
 conda activate videomambapro
 
-conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 -c pytorch
+conda install cudatoolkit==11.8 -c nvidia
+pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu118
+
+conda install -c "nvidia/label/cuda-11.8.0" cuda-nvcc
+conda install packaging
 
 pip install -r requirements.txt
 ```
-
-### Note:
-- **The above commands are for reference only**, please configure your own environment according to your needs.
-- We recommend installing **`PyTorch >= 1.12.0`**, which may greatly reduce the GPU memory usage.
-- It is recommended to install **`timm == 0.4.12`**, because some of the APIs we use are deprecated in the latest version of timm.
-- We have supported pre-training with `PyTorch 2.0`, but it has not been fully tested.
-
+pip install causal_conv1d==1.4.0 (we recommend to install through .whl file)
+pip install mamba-ssm
 
 # Data Preparation
 We read and process the same way as [VideoMAE](https://github.com/MCG-NJU/VideoMAE/blob/main/DATASET.md), but with a different convention for the format of the data list file. 
