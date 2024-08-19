@@ -61,11 +61,15 @@ your_path/SomethingV2/frames/151151 31 166
 ```
 # Codes details
 Our project is based on VideoMamba for fair comparison. To solve limitation 1&2 in our paper, we mainly change the pipeline of Mamba by applying the diagonal mask during the backward SSM and applying residual connection on the bidirection SSM.
-The  residual connection of Ab is realized through assign new matrix A in mamba/mamba_ssm/ops/selective_scan_interface.py
+The  residual connection of Ab is realized in function selective_scan_ref in mamba/mamba_ssm/ops/selective_scan_interface.py, and the key option is below:
 ```
-A = deltaA[:, :, i] + deltaA[:, :, x.index]
+x = u[:, :, 0].unsqueeze(-1).expand(-1, -1, dstate)
+x = deltaA[:, :, i] * x + deltaB_u[:, :, i]
 ```
-The mask assignment is realized through setting elements of A_b in mamba/mamba_ssm/modules/mamba_simple.py
+The mask assignment is realized through setting two selective functions, namely selective_scan_ref, and selective_scan_ref_sub in mamba/mamba_ssm/ops/selective_scan_interface.py.
+When computing the bidirectional mamba, e.g., in bimamba_inner_ref of mamba/mamba_ssm/ops/selective_scan_interface.py, the key code is below:
 ```
-self.A_b_log = mask_diagnomal (A_b_log)
+y = selective_scan_fn(x, delta, A, B, C, D, z=z, delta_bias=delta_bias, delta_softplus=True)
+y_b = selective_scan_ref_sub(x.flip([-1]), delta.flip([-1]), A_b, B.flip([-1]), C.flip([-1]), D, z.flip([-1]), delta_bias, delta_softplus=True)
+y = y + y_b.flip([-1])
 ```
