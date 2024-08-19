@@ -17,10 +17,10 @@ pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https
 conda install -c "nvidia/label/cuda-11.8.0" cuda-nvcc
 conda install packaging
 
-pip install -r requirements.txt
-```
 pip install causal_conv1d==1.4.0 (we recommend to install through .whl file)
 pip install mamba-ssm
+pip install -r requirements.txt
+```
 
 # Data Preparation
 We read and process the same way as [VideoMAE](https://github.com/MCG-NJU/VideoMAE/blob/main/DATASET.md), but with a different convention for the format of the data list file. 
