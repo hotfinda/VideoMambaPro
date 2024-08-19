@@ -73,3 +73,7 @@ y = selective_scan_fn(x, delta, A, B, C, D, z=z, delta_bias=delta_bias, delta_so
 y_b = selective_scan_ref_sub(x.flip([-1]), delta.flip([-1]), A_b, B.flip([-1]), C.flip([-1]), D, z.flip([-1]), delta_bias, delta_softplus=True)
 y = y + y_b.flip([-1])
 ```
+
+# Work Plans
+1. release the model weights
+2. release the results on Imagenet-1K
