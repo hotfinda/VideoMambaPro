@@ -74,4 +74,4 @@ y_b = selective_scan_ref_sub(x.flip([-1]), delta.flip([-1]), A_b, B.flip([-1]), 
 y = y + y_b.flip([-1])
 ```
 # Model weights
-链接: https://pan.baidu.com/s/1vJN_XTRct65cDA_0AB259g?pwd=ghqb 提取码: ghqb
+链接: [https://pan.baidu.com/s/1vJN_XTRct65cDA_0AB259g?pwd=ghqb](https://pan.baidu.com/s/1OzJ53tLBwQknHub6tmOYEQ?pwd=eb7c) 提取码: eb7c
